@@ -18,6 +18,7 @@ import UsersManagement from './Pages/Admin/UsersManagement/UsersManagement';
 import InstructorsManagement from './Pages/Admin/InstructorsManagement/InstructorsManagement';
 import Err404 from './Pages/Err404/Err404';
 import FooterBar from './Components/FooterBar/FooterBar';
+import CourseDetails from './Components/CourseDetails/CourseDetails';
 
 const lightTheme = createTheme({
   palette: {
@@ -59,18 +60,22 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div id='APP' dir={directions} style={{ backgroundColor: theme.palette.background.default }}>
+      <div
+        id="APP"
+        dir={directions}
+        style={{ backgroundColor: theme.palette.background.default }}
+      >
         <BrowserRouter>
-
           <Navbar toggleTheme={toggleTheme} />
 
           <div id="main">
             <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/courses' element={<Courses />} />
-              <Route path='/contact' element={<Contact />} />
-              <Route path='/signin' element={<SignIn />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/courses/:id" element={<CourseDetails />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/signin" element={<SignIn />} />
               <Route path="/admin" element={<Admin />}>
                 <Route index element={<Dashboard />} />
                 <Route path="courses" element={<CoursesManagement />} />
@@ -78,17 +83,17 @@ function App() {
                 <Route path="courses/edit/:id" element={<CourseForm />} />
                 <Route path="users" element={<UsersManagement />} />
                 <Route path="instructors" element={<InstructorsManagement />} />
+
                 {/* <Route path="reports" element={<Reports />} />
               <Route path="settings" element={<Settings />} />
               <Route path="notifications" element={<Notifications />} /> */}
               </Route>
 
-              <Route path='*' element={<Err404 />}></Route>
+              <Route path="*" element={<Err404 />}></Route>
             </Routes>
           </div>
 
           <FooterBar />
-          
         </BrowserRouter>
       </div>
     </ThemeProvider>
